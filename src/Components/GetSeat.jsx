@@ -148,14 +148,14 @@ const GetSeat = () => {
 
   return (
     <div>
-
       <div>
-        <h1 className="text-3xl font-bold underline text-center p-5">Seat Booking System</h1>
+        <h1 className="text-3xl font-bold underline text-center p-5">
+          Seat Booking System
+        </h1>
         {/* <div><img src=""/></div> */}
 
         <div className="p-5">
-
-       <p className="bg-gray-400 border h-6 flex items-center justify-center rounded-2xl hover:bg-amber-300 cursor-pointer"></p>
+          <p className="bg-gray-400 border h-6 flex items-center justify-center rounded-2xl hover:bg-amber-300 cursor-pointer">SCREEN</p>
           {/* <p className="text-center text-lg">Click on a seat to book or unbook it.</p> */}
         </div>
       </div>
