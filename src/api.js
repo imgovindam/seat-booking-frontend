@@ -24,7 +24,7 @@
 // }
 
 
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api";
 // or deployed URL later
 
 export async function apiRequest(endpoint, method = "GET", data) {
