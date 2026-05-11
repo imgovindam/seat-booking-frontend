@@ -7,7 +7,7 @@ import seatReducer from "./seatSlice";
 import movieReducer from "./movieSlice";
 import showReducer from "./showSlice";
 import locationReducer from "./locationSlice";
-import bookingReducer from "./Bookingslice";
+import bookingReducer from "./bookingSlice";
 export const store = configureStore({
   reducer: {
     seats: seatReducer,
