@@ -197,8 +197,7 @@ const seatSlice = createSlice({
     error: null,
   },
   reducers: {
-    // ✅ FIX 3: optimistic lock — update status instantly in UI
-    // without waiting for server round-trip (snappier UX)
+ 
     optimisticLock(state, action) {
       const id = action.payload;
       const seat = state.seats.find((s) => s._id === id);
