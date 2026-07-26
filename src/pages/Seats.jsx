@@ -208,10 +208,9 @@ const GetSeat = () => {
   const navigate = useNavigate();
   const { showId } = useParams();
 
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(()=>Date.now());
   const [selectedSeats, setSelectedSeats] = useState([]); // multi-select UX
 
-  // ✅ FIX 1: removed stray `console.log("status is changed", status)`
   // `status` was not defined at module scope — was referencing nothing and crashing.
 
   const { seats = [], loading } = useSelector((state) => state.seats || {});
@@ -265,7 +264,7 @@ const GetSeat = () => {
     }
   };
 
-  // ✅ FIX 2: proper handleToggle — also drives local selected state for summary
+  // FIX 2: proper handleToggle — also drives local selected state for summary
   const handleToggle = (id, currentStatus) => {
 
   // available → lock it
