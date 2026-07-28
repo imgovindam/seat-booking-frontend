@@ -242,27 +242,47 @@ const GetSeat = () => {
     return Math.max(0, LOCK_TIME - (now - new Date(lockedAt).getTime()));
   };
 
-  const handleConfirmBooking = async () => {
-    const lockedSeatIds = seats
-      .filter((s) => s.status === "locked")
-      .map((s) => s._id);
+  // const handleConfirmBooking = async () => {
+  //   const lockedSeatIds = seats
+  //     .filter((s) => s.status === "locked")
+  //     .map((s) => s._id);
 
-    if (lockedSeatIds.length === 0) {
-      toast.error("No seats are held. Click a seat first.");
-      return;
-    }
+  //   if (lockedSeatIds.length === 0) {
+  //     toast.error("No seats are held. Click a seat first.");
+  //     return;
+  //   }
 
-    const result = await dispatch(
-      createBooking({ showId, seatIds: lockedSeatIds }),
-    );
+  //   const result = await dispatch(
+  //     createBooking({ showId, seatIds: lockedSeatIds }),
+  //   );
 
-    if (createBooking.fulfilled.match(result)) {
-      const bookingId = result.payload._id;
-      navigate(`/checkout/${bookingId}`); // → Checkout page
-    } else {
-      toast.error(result.payload ?? "Booking failed");
-    }
-  };
+  //   if (createBooking.fulfilled.match(result)) {
+  //     const bookingId = result.payload._id;
+  //     navigate(`/checkout/${bookingId}`); // → Checkout page
+  //   } else {
+  //     toast.error(result.payload ?? "Booking failed");
+  //   }
+  // };
+
+
+
+  const handleConfirmBooking = () => {
+  const lockedSeats = seats.filter((s) => s.status === "locked");
+
+  if (lockedSeats.length === 0) {
+    toast.error("No seats are held. Click a seat first.");
+    return;
+  }
+
+  navigate(`/payment/${showId}`, {
+    state: {
+      seatIds: lockedSeats.map((s) => s._id),
+      seatLabels: lockedSeats.map((s) => s.seatNumber ?? `${s.row}${s.col}`),
+    },
+  });
+};
+
+
 
   // FIX 2: proper handleToggle — also drives local selected state for summary
   const handleToggle = (id, currentStatus) => {
@@ -818,7 +838,7 @@ const GetSeat = () => {
                 boxShadow: "0 8px 24px rgba(124,58,237,.4)",
               }}
             >
-              <Ticket size={15} /> Confirm Booking
+             <Ticket size={15} /> Proceed to Pay ₹{show?.price ? show.price * locked : ""}
             </motion.button>
           </motion.div>
         )}
