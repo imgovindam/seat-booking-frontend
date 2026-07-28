@@ -1,5 +1,10 @@
 
+// const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api";
+
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api";
+
+console.log("ENV:", import.meta.env.VITE_API_URL);
+console.log("BASE_URL:", BASE_URL);
 
 // const BASE_URL = import.meta.env.VITE_API_URL ?? "https://backend-seat-booking.onrender.com/";
 // or deployed URL later
